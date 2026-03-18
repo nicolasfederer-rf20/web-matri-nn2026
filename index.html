@@ -32,7 +32,6 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            /* Textura sutil de papel */
             background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
         }
 
@@ -42,10 +41,9 @@
             background-color: white;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             position: relative;
-            margin-bottom: 120px; /* Espacio para botones fijos */
+            margin-bottom: 140px; 
         }
 
-        /* Contenedor de la Imagen Principal */
         .image-wrapper {
             width: 100%;
             line-height: 0;
@@ -57,13 +55,51 @@
             display: block;
         }
 
-        /* Botones Interactivos */
+        /* Botón de Música Flotante */
+        .music-control {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--stone-200);
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .music-control svg {
+            width: 22px;
+            height: 22px;
+            color: var(--stone-800);
+        }
+
+        .playing {
+            animation: pulse-music 2s infinite;
+            background: white;
+            border-color: var(--stone-900);
+        }
+
+        @keyframes pulse-music {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0,0,0,0.1); }
+            50% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(0,0,0,0); }
+            100% { transform: scale(1); }
+        }
+
+        /* Botones Inferiores */
         .actions-overlay {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(to top, white 80%, rgba(255,255,255,0));
+            background: linear-gradient(to top, white 85%, rgba(255,255,255,0));
             padding: 20px 20px 40px 20px;
             display: flex;
             flex-direction: column;
@@ -79,20 +115,20 @@
             justify-content: center;
             gap: 10px;
             padding: 16px;
-            border-radius: 12px;
+            border-radius: 14px;
             font-family: 'Montserrat', sans-serif;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
             text-decoration: none;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             transition: all 0.3s ease;
         }
 
         .btn-primary {
             background-color: var(--stone-900);
             color: white;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
 
         .btn-secondary {
@@ -101,38 +137,44 @@
             border: 1px solid var(--stone-200);
         }
 
-        .btn:active {
-            transform: scale(0.98);
-        }
+        .btn:active { transform: scale(0.97); }
 
-        .icon {
-            width: 18px;
-            height: 18px;
-        }
-
-        /* Mensaje de cortesía opcional debajo de la imagen */
         .footer-note {
-            padding: 40px 20px;
+            padding: 50px 20px;
             text-align: center;
             font-style: italic;
             color: var(--stone-400);
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            letter-spacing: 0.5px;
         }
 
-        /* Soporte para modo oscuro del sistema (opcional, manteniendo elegancia) */
-        @media (prefers-color-scheme: dark) {
-            body { background-color: #f4f3f0; }
+        @media (max-width: 480px) {
+            .invitation-container { margin-bottom: 150px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- CONTROL DE MÚSICA -->
+    <div class="music-control" id="musicBtn" onclick="toggleMusic()" title="Reproducir música">
+        <svg id="iconMusic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18V5l12-2v13"></path>
+            <circle cx="6" cy="18" r="3"></circle>
+            <circle cx="18" cy="16" r="3"></circle>
+        </svg>
+    </div>
+
+    <!-- AUDIO ELEMENT -->
+    <audio id="bgMusic" loop>
+        <!-- Cambia 'cancion.mp3' por el nombre del archivo que subas a GitHub -->
+        <source src="cancion.mp3" type="audio/mpeg">
+    </audio>
+
     <div class="invitation-container">
-        <!-- ÁREA DE IMAGEN -->
         <div class="image-wrapper">
-            <!-- URL de la versión V8 actualizada -->
+            <!-- Imagen Versión V8 -->
             <img src="https://i.postimg.cc/KjPH8MJS/Invitacion-Matrimonio-N-N-2026-V8.png" 
-                 alt="Invitación de Matrimonio" 
+                 alt="Invitación de Matrimonio Nicole y Nicolás" 
                  class="main-invitation-img">
         </div>
 
@@ -141,25 +183,50 @@
         </div>
     </div>
 
-    <!-- BOTONES FIJOS EN LA PARTE INFERIOR -->
+    <!-- BOTONES INTERACTIVOS -->
     <div class="actions-overlay">
-        <!-- LINK GOOGLE MAPS -->
         <a href="https://maps.app.goo.gl/PwfdAbo893TkgYiHA" target="_blank" class="btn btn-primary">
-            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
             </svg>
             Ver Ubicación en Maps
         </a>
 
-        <!-- LINK NOVIOS PARIS -->
         <a href="https://www.noviosparis.cl/home/couple-catalog/7448724" target="_blank" class="btn btn-secondary">
-            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
             </svg>
             Lista de Regalos Paris
         </a>
     </div>
+
+    <script>
+        const music = document.getElementById('bgMusic');
+        const btn = document.getElementById('musicBtn');
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                btn.classList.remove('playing');
+            } else {
+                music.play().catch(e => {
+                    console.log("El navegador bloqueó el inicio automático. Se requiere interacción.");
+                });
+                btn.classList.add('playing');
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // Si el usuario toca cualquier parte de la invitación, intentamos iniciar la música
+        // Esto ayuda a superar las restricciones de los navegadores
+        document.body.addEventListener('click', function() {
+            if(!isPlaying) {
+                // toggleMusic(); // Descomenta esta línea si quieres que empiece al primer toque
+            }
+        }, { once: true });
+    </script>
 
 </body>
 </html>
