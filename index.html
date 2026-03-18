@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación Matrimonio - Nicole & Nicolás</title>
+    <!-- Fuentes elegantes de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --stone-900: #1c1917;
+            --stone-800: #292524;
+            --stone-400: #a8a29e;
+            --stone-200: #e7e5e4;
+            --bg-color: #faf9f6;
+            --accent-color: #d6d3d1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--stone-900);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            /* Textura sutil de papel */
+            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+        }
+
+        .invitation-container {
+            width: 100%;
+            max-width: 500px;
+            background-color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            position: relative;
+            margin-bottom: 120px; /* Espacio para botones fijos */
+        }
+
+        /* Contenedor de la Imagen Principal */
+        .image-wrapper {
+            width: 100%;
+            line-height: 0;
+        }
+
+        .main-invitation-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Botones Interactivos */
+        .actions-overlay {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, white 80%, rgba(255,255,255,0));
+            padding: 20px 20px 40px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 100;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px;
+            border-radius: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--stone-900);
+            color: white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: var(--stone-800);
+            border: 1px solid var(--stone-200);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .icon {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Mensaje de cortesía opcional debajo de la imagen */
+        .footer-note {
+            padding: 40px 20px;
+            text-align: center;
+            font-style: italic;
+            color: var(--stone-400);
+            font-size: 1.1rem;
+        }
+
+        /* Soporte para modo oscuro del sistema (opcional, manteniendo elegancia) */
+        @media (prefers-color-scheme: dark) {
+            body { background-color: #f4f3f0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="invitation-container">
+        <!-- ÁREA DE IMAGEN -->
+        <div class="image-wrapper">
+            <!-- URL de la versión V8 actualizada -->
+            <img src="https://i.postimg.cc/KjPH8MJS/Invitacion-Matrimonio-N-N-2026-V8.png" 
+                 alt="Invitación de Matrimonio" 
+                 class="main-invitation-img">
+        </div>
+
+        <div class="footer-note">
+            ¡Los esperamos con mucha alegría!
+        </div>
+    </div>
+
+    <!-- BOTONES FIJOS EN LA PARTE INFERIOR -->
+    <div class="actions-overlay">
+        <!-- LINK GOOGLE MAPS -->
+        <a href="https://maps.app.goo.gl/PwfdAbo893TkgYiHA" target="_blank" class="btn btn-primary">
+            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            Ver Ubicación en Maps
+        </a>
+
+        <!-- LINK NOVIOS PARIS -->
+        <a href="https://www.noviosparis.cl/home/couple-catalog/7448724" target="_blank" class="btn btn-secondary">
+            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+            </svg>
+            Lista de Regalos Paris
+        </a>
+    </div>
+
+</body>
+</html>
